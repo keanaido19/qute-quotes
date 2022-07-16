@@ -1,6 +1,7 @@
 package de.wethinkco.qutequotes;
 
 import de.wethinkco.qutequotes.quote.QuoteController;
+import de.wethinkco.qutequotes.quote.QuoteService;
 import io.javalin.Javalin;
 
 import static io.javalin.apibuilder.ApiBuilder.*;
@@ -10,18 +11,16 @@ public class ApiServer {
 
     public ApiServer() {
         this.server = Javalin
-                .create()
-                .routes(
-                        () -> {
-                            path(
-                                    "quote",
-                                    () -> path(
-                                            "{id}",
+                .create(
+                        config -> config.defaultContentType = "application/json"
+                )
+                .routes(() -> {
+                            path("quote",
+                                    () -> path("{id}",
                                             () -> get(QuoteController::getOne)
                                     )
                             );
-                            path(
-                                    "quotes",
+                            path("quotes",
                                     () -> {
                                         get(QuoteController::getAll);
                                         post(QuoteController::create);

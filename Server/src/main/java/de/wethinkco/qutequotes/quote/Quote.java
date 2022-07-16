@@ -1,11 +1,21 @@
 package de.wethinkco.qutequotes.quote;
 
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
+
 /**
  * The type Quote.
  */
+@DatabaseTable(tableName = "Quote")
 public class Quote {
+
+    @DatabaseField(generatedId = true)
     private Integer id;
+
+    @DatabaseField(canBeNull = false)
     private String text;
+
+    @DatabaseField(canBeNull = false)
     private String name;
 
     /**
