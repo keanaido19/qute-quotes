@@ -1,0 +1,13 @@
+version: "3.3"
+
+services:
+  api-server:
+    container_name: qute-quotes-api-server
+    image: qute-quotes-api-server
+    build:
+      context: .
+      dockerfile: "Dockerfile"
+    ports:
+      - "5000:5050"
+    volumes:
+      - .:/app
