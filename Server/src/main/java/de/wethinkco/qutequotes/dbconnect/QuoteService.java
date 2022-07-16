@@ -1,4 +1,4 @@
-package de.wethinkco.qutequotes.quote;
+package de.wethinkco.qutequotes.dbconnect;
 
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
@@ -6,6 +6,7 @@ import com.j256.ormlite.jdbc.JdbcPooledConnectionSource;
 import com.j256.ormlite.logger.Level;
 import com.j256.ormlite.logger.Logger;
 import com.j256.ormlite.table.TableUtils;
+import de.wethinkco.qutequotes.quote.Quote;
 
 import java.sql.SQLException;
 import java.util.List;

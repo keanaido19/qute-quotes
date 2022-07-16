@@ -1,4 +1,4 @@
-package de.wethinkco.qutequotes.quote;
+package de.wethinkco.qutequotes.api;
 
 public class QuoteRequest {
     private String text;

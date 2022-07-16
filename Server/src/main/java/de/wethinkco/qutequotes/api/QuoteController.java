@@ -1,5 +1,7 @@
-package de.wethinkco.qutequotes.quote;
+package de.wethinkco.qutequotes.api;
 
+import de.wethinkco.qutequotes.quote.Quote;
+import de.wethinkco.qutequotes.dbconnect.QuoteService;
 import io.javalin.http.Context;
 import io.javalin.http.HttpCode;
 

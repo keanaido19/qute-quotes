@@ -1,7 +1,5 @@
-package de.wethinkco.qutequotes;
+package de.wethinkco.qutequotes.api;
 
-import de.wethinkco.qutequotes.quote.QuoteController;
-import de.wethinkco.qutequotes.quote.QuoteService;
 import io.javalin.Javalin;
 
 import static io.javalin.apibuilder.ApiBuilder.*;
