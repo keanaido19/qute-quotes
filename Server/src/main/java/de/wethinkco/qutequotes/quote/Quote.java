@@ -9,7 +9,7 @@ import com.j256.ormlite.table.DatabaseTable;
 @DatabaseTable(tableName = "Quote")
 public class Quote {
 
-    @DatabaseField(generatedId = true)
+    @DatabaseField(canBeNull = false)
     private Integer id;
 
     @DatabaseField(canBeNull = false)

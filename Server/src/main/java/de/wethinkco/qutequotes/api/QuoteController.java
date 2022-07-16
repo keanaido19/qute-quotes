@@ -97,7 +97,7 @@ public class QuoteController {
             ),
             responses = {
                     @OpenApiResponse(
-                            status = "200",
+                            status = "201",
                             content = {
                                     @OpenApiContent(
                                             from = Quote.class
@@ -127,6 +127,7 @@ public class QuoteController {
             context.status(HttpCode.CREATED);
             context.json(quote);
         } catch (Exception e) {
+            e.printStackTrace();
             throw new BadRequestResponse();
         }
     }

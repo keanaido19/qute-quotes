@@ -40,12 +40,12 @@ public class QuoteService {
         Quote quote = new Quote();
         quote.setText(text);
         quote.setName(name);
+        quote.setId(Math.toIntExact(quoteDao.countOf()) + 1);
         quoteDao.create(quote);
-        quoteDao.update(quote);
         return quote;
     }
 
     public static Quote findById(Integer id) throws SQLException {
-        return quoteDao.queryForId(id);
+        return quoteDao.queryForEq("id", id).get(0);
     }
 }

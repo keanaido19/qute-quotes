@@ -38,7 +38,7 @@ public class ApiServer {
                 );
     }
 
-    public Javalin start() {
+    public void start() {
         System.out.println(
                 "Welcome to Qute Quotes Server!\n" +
                         "Server is listening on...\n" +
@@ -47,11 +47,11 @@ public class ApiServer {
                         "\tSwagger UI\t:\thttp://localhost:5000/" +
                         "swagger-ui"
         );
-        return this.server.start(5000);
+        this.server.start(5000);
     }
 
-    public Javalin stop() {
-        return this.server.stop();
+    public void stop() {
+        this.server.stop();
     }
 
     private static OpenApiPlugin getConfiguredOpenApiPlugin() {
