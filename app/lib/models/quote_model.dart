@@ -37,4 +37,9 @@ class QuoteRequest {
   final String name;
 
   QuoteRequest({required this.text, required this.name});
+
+  Map<String, dynamic> toJson() => {
+    'text': text,
+    'name': name
+  };
 }

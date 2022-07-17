@@ -23,7 +23,12 @@ class QuoteController {
     }
   }
 
-  void postQuote(String text, String name) {
-
+  void postQuote(String text, String name) async {
+    String json = jsonEncode(QuoteRequest(text: text, name: name));
+    final request = await http.post(
+      Uri.parse('http://localhost:5000/quotes'),
+      headers: {"Content-Type": "application/json"},
+      body: json,
+    );
   }
 }

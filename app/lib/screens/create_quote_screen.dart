@@ -39,16 +39,17 @@ class _CreateQuoteScreenState extends State<CreateQuoteScreen> {
       );
       return;
     }
+    name ??= 'Unknown';
 
-    _quoteController.postQuote(text, name ?? 'Unknown');
+    _quoteController.postQuote(text, name);
 
     Navigator.pushReplacement(
         context,
         MaterialPageRoute<void>(
             builder: (context) {
-              return const QuoteScreen(
+              return QuoteScreen(
                   quote : Quote(
-                      id: 1, text: 'lol', name: 'lol'
+                      id: 1, text: text, name: name!
                   )
               );
             }
