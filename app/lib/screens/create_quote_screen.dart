@@ -18,9 +18,30 @@ class _CreateQuoteScreenState extends State<CreateQuoteScreen> {
   final QuoteController _quoteController = QuoteController();
 
   void _createQuote(String text, String? name) {
-    context.read<InputProvider>().reset();
-    if ('' == text) return;
-    name = name ?? 'Unknown';
+    if ('' == text) {
+      context.read<InputProvider>().setSubmitted();
+      showDialog(
+          context: context,
+          builder: (_) => AlertDialog(
+            title: Text(
+              'Warning!',
+              style: Theme.of(context).textTheme.headline5
+            ),
+            content: const Text('Quote cannot be empty.'),
+            actions: <Widget>[
+              TextButton(
+                  onPressed: Navigator.of(context).pop,
+                  child: const Text('Okay'),
+              )
+            ],
+          ),
+        barrierDismissible: true,
+      );
+      return;
+    }
+
+    _quoteController.postQuote(text, name ?? 'Unknown');
+
     Navigator.pushReplacement(
         context,
         MaterialPageRoute<void>(
@@ -37,6 +58,7 @@ class _CreateQuoteScreenState extends State<CreateQuoteScreen> {
 
   @override
   Widget build(BuildContext context) {
+    context.read<InputProvider>().reset();
     return Scaffold(
       appBar: AppBar(
         title: const Text('Create Quote'),
@@ -85,7 +107,6 @@ class _CreateQuoteScreenState extends State<CreateQuoteScreen> {
                       ),
                       ElevatedButton(
                           onPressed: () {
-                            context.read<InputProvider>().reset();
                             Navigator.pop(context);
                             },
                           child: const Text('close')
@@ -123,18 +144,28 @@ class _TextInputWidgetState extends State<TextInputWidget> {
       decoration: InputDecoration(
         border: const OutlineInputBorder(),
         labelText: "Enter your Quote",
-        helperText: "Required",
+        labelStyle: TextStyle(
+            color: context.watch<InputProvider>().isTextEmptyAndTriedSubmit
+                ? Colors.red : null
+        ),
+        helperText: "*Required",
+        helperStyle: TextStyle(
+            color: context.watch<InputProvider>().isTextEmpty ? Colors.red
+                :null,
+        ),
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(
             color:
-            context.watch<InputProvider>().isTrue ? Colors.red : Colors.blue,
+            context.watch<InputProvider>().isTextEmptyAndTriedSubmit
+                ? Colors.red : Colors.grey,
             width: 2.0,
           ),
         ),
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(
             color:
-            context.watch<InputProvider>().isTrue ? Colors.red : Colors.blue,
+            context.watch<InputProvider>().isTextEmptyAndTriedSubmit
+                ? Colors.red : Colors.blue,
             width: 2.0,
           ),
         ),
@@ -161,10 +192,10 @@ class _NameInputWidgetState extends State<NameInputWidget> {
       decoration: const InputDecoration(
         border: OutlineInputBorder(),
         labelText: "Enter your Name",
-        helperText: "Optional",
+        helperText: "*Optional",
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(
-            color: Colors.blue,
+            color: Colors.grey,
             width: 2.0,
           ),
         ),
