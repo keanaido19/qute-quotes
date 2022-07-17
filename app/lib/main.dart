@@ -13,14 +13,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Qute Quotes',
-      builder: (context, child) {
-        return Scaffold(
-          appBar: AppBar(
-            title: const Text('Qute Quotes'),
-          ),
-          body: const FailedConnectionWidget(),
-        );
+      routes: {
+        '/home': (context) => const HomeScreen()
       },
+      home: const HomeScreen(),
     );
   }
 }
