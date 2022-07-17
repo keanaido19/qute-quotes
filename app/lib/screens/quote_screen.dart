@@ -11,6 +11,7 @@ class QuoteScreen extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(20.0),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Expanded(
