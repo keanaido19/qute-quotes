@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+
 
 class Quote {
   final int id;
@@ -30,4 +30,11 @@ class Quote {
 
   @override
   int get hashCode => id.hashCode ^ text.hashCode ^ name.hashCode;
+}
+
+class QuoteRequest {
+  final String text;
+  final String name;
+
+  QuoteRequest({required this.text, required this.name});
 }
