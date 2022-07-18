@@ -1,8 +1,8 @@
 all: maven_clean maven_validate maven_compile maven_test maven_package \
-docker_compose flutter_build
+docker_compose client_app_snap
 
 .PHONY: all maven_clean maven_validate maven_compile maven_test maven_package\
- docker_compose flutter_build
+ docker_compose client_app_snap
 
 maven_clean:
 	mvn clean
@@ -22,5 +22,5 @@ maven_package:
 docker_compose:
 	docker compose build
 
-flutter_build:
-	cd app && snapcraft
+client_app_snap:
+	cd app; snapcraft --use-lxd;
