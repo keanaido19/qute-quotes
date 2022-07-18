@@ -1,0 +1,28 @@
+name: qute-quotes-app
+version: 1.0.0
+summary: Qute Quotes App
+description: Qute Quotes client application for Qute Quotes exercise.
+
+confinement: strict
+base: core18
+grade: devel
+
+slots:
+  dbus-qute-quotes-app: # adjust accordingly to your app name
+    interface: dbus
+    bus: session
+    name: de.wethinkco.qute_quotes_app
+
+apps:
+  qute-quotes-app:
+    command: app
+    extensions: [flutter-stable]
+    plugs:
+      - network
+    slots:
+      - dbus-qute-quotes-app
+parts:
+  qute-quotes-app:
+    source: .
+    plugin: flutter
+    flutter-target: lib/main.dart
